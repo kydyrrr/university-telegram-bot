@@ -44,7 +44,6 @@ def main_keyboard():
 
 @dp.message(CommandStart())
 async def start(message: Message):
-
     await message.answer(
         "👋 Сәлем!\n\n"
         "🎓 Университеттік көмекшіге қош келдіңіз!\n\n"
@@ -79,7 +78,6 @@ def schedule_keyboard():
 
 @dp.message(lambda message: message.text == "📅 Расписание")
 async def schedule(message: Message):
-
     await message.answer(
         "📅 РАСПИСАНИЕ\n\n"
         "Выберите день недели:",
@@ -89,7 +87,6 @@ async def schedule(message: Message):
 
 @dp.message(lambda message: message.text == "Понедельник")
 async def monday(message: Message):
-
     await message.answer(
         "📅 ПОНЕДЕЛЬНИК\n\n"
         "10:00–10:50 — Социология\n"
@@ -100,7 +97,6 @@ async def monday(message: Message):
 
 @dp.message(lambda message: message.text == "Вторник")
 async def tuesday(message: Message):
-
     await message.answer(
         "📅 ВТОРНИК\n\n"
         "09:00–09:50 — История Казахстана\n"
@@ -112,7 +108,6 @@ async def tuesday(message: Message):
 
 @dp.message(lambda message: message.text == "Среда")
 async def wednesday(message: Message):
-
     await message.answer(
         "📅 СРЕДА\n\n"
         "11:00–11:50 — ИКТ\n"
@@ -124,7 +119,6 @@ async def wednesday(message: Message):
 
 @dp.message(lambda message: message.text == "Четверг")
 async def thursday(message: Message):
-
     await message.answer(
         "📅 ЧЕТВЕРГ\n\n"
         "09:00–09:50 — Математика\n"
@@ -136,7 +130,6 @@ async def thursday(message: Message):
 
 @dp.message(lambda message: message.text == "Пятница")
 async def friday(message: Message):
-
     await message.answer(
         "📅 ПЯТНИЦА\n\n"
         "09:00–09:50 — Английский\n"
@@ -147,59 +140,25 @@ async def friday(message: Message):
     )
 
 
-@dp.message(lambda message: message.text == "🔙 Главное меню")
-async def back_to_menu(message: Message):
-
-    await message.answer(
-        "🏠 Главное меню",
-        reply_markup=main_keyboard()
-    )
-
-@dp.message(lambda message: message.text == "📅 Расписание")
-async def schedule(message: Message):
-
-    await message.answer(
-        "📅 РАСПИСАНИЕ\n\n"
-        "Здесь будет расписание занятий.\n\n"
-        "Пока это демонстрационная версия.\n"
-        "Позже добавим расписание твоей 
-
 # =========================
 # Университет
 # =========================
 
 @dp.message(lambda message: message.text == "🏫 Университет")
 async def university(message: Message):
-
     await message.answer(
         "🏫 КАЗАХСКО-НЕМЕЦКИЙ ИНСТИТУТ "
         "УСТОЙЧИВОЙ ИНЖЕНЕРИИ (KINI)\n\n"
-        
         "Казахско-Немецкий институт устойчивой инженерии "
         "(KINI) — это совместный образовательный проект "
         "Казахско-немецкого университета (DKU) и "
         "Каспийского государственного университета технологий "
         "и инжиниринга имени Ш. Есенова "
         "(Yessenov University) в Актау.\n\n"
-        
         "📍 Адрес:\n"
         "32 микрорайон, 1 здание\n\n"
-        
         "🌐 Сайт:\n"
         "kini.kz"
-    )
-
-@dp.message(lambda message: message.text == "🏫 Университет")
-async def university(message: Message):
-
-    await message.answer(
-        "🏫 УНИВЕРСИТЕТ\n\n"
-        "Здесь будет информация об университете:\n\n"
-        "🎓 История\n"
-        "📍 Адрес\n"
-        "📞 Контакты\n"
-        "🌐 Официальный сайт\n"
-        "🏢 Факультеты и образовательные программы"
     )
 
 
@@ -209,7 +168,6 @@ async def university(message: Message):
 
 @dp.message(lambda message: message.text == "📝 Поступление")
 async def admission(message: Message):
-
     await message.answer(
         "📝 НЕОБХОДИМЫЕ ДОКУМЕНТЫ\n\n"
         "1. Қабылдау туралы өтініш\n"
@@ -225,19 +183,6 @@ async def admission(message: Message):
         "10. Әскери тіркеу куәлігінің көшірмесі"
     )
 
-@dp.message(lambda message: message.text == "📝 Поступление")
-async def admission(message: Message):
-
-    await message.answer(
-        "📝 ПОСТУПЛЕНИЕ\n\n"
-        "Здесь будет информация для абитуриентов:\n\n"
-        "📄 Необходимые документы\n"
-        "🎯 Проходные баллы\n"
-        "🎓 Гранты\n"
-        "💰 Стоимость обучения\n"
-        "📅 Сроки подачи документов"
-    )
-
 
 # =========================
 # Стипендия
@@ -245,42 +190,27 @@ async def admission(message: Message):
 
 @dp.message(lambda message: message.text == "💰 Стипендия")
 async def scholarship(message: Message):
-
     await message.answer(
         "💰 СТИПЕНДИЯ\n\n"
-        "Студенты, обучающиеся на государственном образовательном "
-        "гранте, могут получать государственную стипендию "
-        "при выполнении установленных требований.\n\n"
-        
+        "Студенты, обучающиеся на государственном "
+        "образовательном гранте, могут получать "
+        "государственную стипендию при выполнении "
+        "установленных требований.\n\n"
         "🎓 Основные условия:\n"
         "• Обучение на государственном гранте.\n"
         "• Выполнение учебного плана.\n"
         "• Отсутствие академической задолженности.\n"
         "• Соблюдение правил университета.\n\n"
-        
-        "📚 Для получения и сохранения стипендии студенту "
-        "необходимо своевременно сдавать экзамены и другие "
-        "формы контроля.\n\n"
-        
-        "🏆 Также в университете могут действовать различные "
-        "виды поощрений и повышенных стипендий за отличную "
+        "📚 Для получения и сохранения стипендии "
+        "необходимо своевременно сдавать экзамены "
+        "и другие формы контроля.\n\n"
+        "🏆 Также могут действовать различные виды "
+        "поощрений и повышенных стипендий за отличную "
         "учёбу, научную деятельность и активное участие "
         "в жизни университета.\n\n"
-        
-        "ℹ️ Актуальные условия, размеры и порядок назначения "
-        "стипендий следует уточнять в университете."
-    )
-
-@dp.message(lambda message: message.text == "💰 Стипендия")
-async def scholarship(message: Message):
-
-    await message.answer(
-        "💰 СТИПЕНДИЯ\n\n"
-        "Здесь будет информация о:\n\n"
-        "💵 Государственной стипендии\n"
-        "🏆 Повышенной стипендии\n"
-        "📚 Условиях получения\n"
-        "📅 Сроках выплаты"
+        "ℹ️ Актуальные условия, размеры и порядок "
+        "назначения стипендий следует уточнять "
+        "в университете."
     )
 
 
@@ -290,7 +220,6 @@ async def scholarship(message: Message):
 
 @dp.message(lambda message: message.text == "📚 Студентам")
 async def students(message: Message):
-
     await message.answer(
         "📚 СТУДЕНТАМ\n\n"
         "Полезная информация:\n\n"
@@ -308,12 +237,27 @@ async def students(message: Message):
 
 @dp.message(lambda message: message.text == "❓ Помощь")
 async def help_command(message: Message):
-
     await message.answer(
         "❓ ПОМОЩЬ\n\n"
-        "Выберите нужный раздел в меню.\n\n"
-        "Если у вас есть вопрос, "
-        "его можно будет задать боту."
+        "Используйте кнопки главного меню, "
+        "чтобы получить информацию.\n\n"
+        "📅 Расписание — расписание занятий\n"
+        "🏫 Университет — информация о KINI\n"
+        "📝 Поступление — необходимые документы\n"
+        "💰 Стипендия — информация о стипендии\n"
+        "📚 Студентам — полезная информация"
+    )
+
+
+# =========================
+# Главное меню
+# =========================
+
+@dp.message(lambda message: message.text == "🔙 Главное меню")
+async def back_to_menu(message: Message):
+    await message.answer(
+        "🏠 Главное меню",
+        reply_markup=main_keyboard()
     )
 
 
@@ -345,7 +289,6 @@ async def run_bot():
 async def main():
     web_thread = Thread(target=run_web_server)
     web_thread.start()
-
     await run_bot()
 
 
