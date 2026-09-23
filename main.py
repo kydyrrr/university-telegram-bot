@@ -18,10 +18,12 @@ bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
 
-@dp.message(CommandStart())
-async def start(message: Message):
+# =========================
+# Главное меню
+# =========================
 
-    keyboard = ReplyKeyboardMarkup(
+def main_keyboard():
+    return ReplyKeyboardMarkup(
         keyboard=[
             [
                 KeyboardButton(text="📅 Расписание"),
@@ -39,13 +41,122 @@ async def start(message: Message):
         resize_keyboard=True
     )
 
+
+@dp.message(CommandStart())
+async def start(message: Message):
+
     await message.answer(
         "👋 Сәлем!\n\n"
-        "Мен университеттік көмекшімін 🎓\n\n"
+        "🎓 Университеттік көмекшіге қош келдіңіз!\n\n"
         "Қажетті бөлімді таңдаңыз:",
-        reply_markup=keyboard
+        reply_markup=main_keyboard()
     )
 
+
+# =========================
+# Расписание
+# =========================
+
+@dp.message(lambda message: message.text == "📅 Расписание")
+async def schedule(message: Message):
+
+    await message.answer(
+        "📅 РАСПИСАНИЕ\n\n"
+        "Здесь будет расписание занятий.\n\n"
+        "Пока это демонстрационная версия.\n"
+        "Позже добавим расписание твоей группы."
+    )
+
+
+# =========================
+# Университет
+# =========================
+
+@dp.message(lambda message: message.text == "🏫 Университет")
+async def university(message: Message):
+
+    await message.answer(
+        "🏫 УНИВЕРСИТЕТ\n\n"
+        "Здесь будет информация об университете:\n\n"
+        "🎓 История\n"
+        "📍 Адрес\n"
+        "📞 Контакты\n"
+        "🌐 Официальный сайт\n"
+        "🏢 Факультеты и образовательные программы"
+    )
+
+
+# =========================
+# Поступление
+# =========================
+
+@dp.message(lambda message: message.text == "📝 Поступление")
+async def admission(message: Message):
+
+    await message.answer(
+        "📝 ПОСТУПЛЕНИЕ\n\n"
+        "Здесь будет информация для абитуриентов:\n\n"
+        "📄 Необходимые документы\n"
+        "🎯 Проходные баллы\n"
+        "🎓 Гранты\n"
+        "💰 Стоимость обучения\n"
+        "📅 Сроки подачи документов"
+    )
+
+
+# =========================
+# Стипендия
+# =========================
+
+@dp.message(lambda message: message.text == "💰 Стипендия")
+async def scholarship(message: Message):
+
+    await message.answer(
+        "💰 СТИПЕНДИЯ\n\n"
+        "Здесь будет информация о:\n\n"
+        "💵 Государственной стипендии\n"
+        "🏆 Повышенной стипендии\n"
+        "📚 Условиях получения\n"
+        "📅 Сроках выплаты"
+    )
+
+
+# =========================
+# Студентам
+# =========================
+
+@dp.message(lambda message: message.text == "📚 Студентам")
+async def students(message: Message):
+
+    await message.answer(
+        "📚 СТУДЕНТАМ\n\n"
+        "Полезная информация:\n\n"
+        "📖 Электронная библиотека\n"
+        "💻 Образовательные системы\n"
+        "👨‍🏫 Деканат\n"
+        "🏠 Общежитие\n"
+        "📋 Заявления и документы"
+    )
+
+
+# =========================
+# Помощь
+# =========================
+
+@dp.message(lambda message: message.text == "❓ Помощь")
+async def help_command(message: Message):
+
+    await message.answer(
+        "❓ ПОМОЩЬ\n\n"
+        "Выберите нужный раздел в меню.\n\n"
+        "Если у вас есть вопрос, "
+        "его можно будет задать боту."
+    )
+
+
+# =========================
+# Web Server для Render
+# =========================
 
 app = Flask(__name__)
 
@@ -59,6 +170,10 @@ def run_web_server():
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
 
+
+# =========================
+# Запуск
+# =========================
 
 async def run_bot():
     await dp.start_polling(bot)
