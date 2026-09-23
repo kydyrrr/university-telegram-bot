@@ -1,16 +1,23 @@
-import asyncio import os from threading import Thread
-from flask import Flask from aiogram import Bot, Dispatcher from aiogram.filters import CommandStart from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
-=========================
-Настройки
-=========================
+import asyncio
+import os
+from threading import Thread
+
+from flask import Flask
+from aiogram import Bot, Dispatcher
+from aiogram.filters import CommandStart
+from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
+
 TOKEN = os.getenv("BOT_TOKEN")
-if not TOKEN: raise ValueError("BOT_TOKEN не найден в Environment Variables")
-=========================
-Telegram Bot
-=========================
-bot = Bot(token=TOKEN) dp = Dispatcher()
-@dp.message(CommandStart()) async def start(message: Message):
-keyboard = ReplyKeyboardMarkup(
+
+if not TOKEN:
+    raise ValueError("BOT_TOKEN не найден в Environment Variables")
+
+bot = Bot(token=TOKEN)
+dp = Dispatcher()
+
+@dp.message(CommandStart())
+async def start(message: Message):
+    keyboard = ReplyKeyboardMarkup(
     keyboard=[
         [
             KeyboardButton(text="📅 Расписание"),
@@ -37,16 +44,21 @@ await message.answer(
     "Қажетті бөлімді таңдаңыз:",
     reply_markup=keyboard
 )
-=========================
-Web Server
-=========================
-app = Flask(name)
-@app.route("/") def home(): return "University Telegram Bot is running!"
+
+app = Flask(__name__)
+
+@app.route("/")
+def home(): 
+    return "University Telegram Bot is running!"
 def run_web_server(): port = int(os.environ.get("PORT", 10000)) app.run(host="0.0.0.0", port=port)
-=========================
-Запуск
-=========================
-async def run_bot(): await dp.start_polling(bot)
-async def main(): web_thread = Thread(target=run_web_server) web_thread.start()
-await run_bot()
-if name == "main": asyncio.run(main())
+
+async def run_bot():
+    await dp.start_polling(bot)
+    
+async def main():
+    web_thread = Thread(target=run_web_server) web_thread.start()
+    
+    await run_bot()
+    
+if name == "main":
+    asyncio.run(main())
