@@ -57,6 +57,104 @@ async def start(message: Message):
 # Расписание
 # =========================
 
+def schedule_keyboard():
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text="Понедельник"),
+                KeyboardButton(text="Вторник")
+            ],
+            [
+                KeyboardButton(text="Среда"),
+                KeyboardButton(text="Четверг")
+            ],
+            [
+                KeyboardButton(text="Пятница"),
+                KeyboardButton(text="🔙 Главное меню")
+            ]
+        ],
+        resize_keyboard=True
+    )
+
+
+@dp.message(lambda message: message.text == "📅 Расписание")
+async def schedule(message: Message):
+
+    await message.answer(
+        "📅 РАСПИСАНИЕ\n\n"
+        "Выберите день недели:",
+        reply_markup=schedule_keyboard()
+    )
+
+
+@dp.message(lambda message: message.text == "Понедельник")
+async def monday(message: Message):
+
+    await message.answer(
+        "📅 ПОНЕДЕЛЬНИК\n\n"
+        "10:00–10:50 — Социология\n"
+        "13:00–13:50 — Немецкий\n"
+        "14:00–14:50 — Немецкий"
+    )
+
+
+@dp.message(lambda message: message.text == "Вторник")
+async def tuesday(message: Message):
+
+    await message.answer(
+        "📅 ВТОРНИК\n\n"
+        "09:00–09:50 — История Казахстана\n"
+        "10:00–10:50 — История Казахстана\n"
+        "15:00–15:50 — Немецкий\n"
+        "16:00–16:50 — Немецкий"
+    )
+
+
+@dp.message(lambda message: message.text == "Среда")
+async def wednesday(message: Message):
+
+    await message.answer(
+        "📅 СРЕДА\n\n"
+        "11:00–11:50 — ИКТ\n"
+        "12:00–12:50 — ИКТ\n"
+        "13:00–13:50 — Казахский язык\n"
+        "14:00–14:50 — Казахский язык"
+    )
+
+
+@dp.message(lambda message: message.text == "Четверг")
+async def thursday(message: Message):
+
+    await message.answer(
+        "📅 ЧЕТВЕРГ\n\n"
+        "09:00–09:50 — Математика\n"
+        "10:00–10:50 — Математика\n"
+        "11:00–11:50 — Немецкий\n"
+        "12:00–12:50 — Немецкий"
+    )
+
+
+@dp.message(lambda message: message.text == "Пятница")
+async def friday(message: Message):
+
+    await message.answer(
+        "📅 ПЯТНИЦА\n\n"
+        "09:00–09:50 — Английский\n"
+        "10:00–10:50 — Английский\n"
+        "11:00–11:50 — Математика\n"
+        "12:00–12:50 — Английский\n"
+        "13:00–13:50 — Английский"
+    )
+
+
+@dp.message(lambda message: message.text == "🔙 Главное меню")
+async def back_to_menu(message: Message):
+
+    await message.answer(
+        "🏠 Главное меню",
+        reply_markup=main_keyboard()
+    )
+
 @dp.message(lambda message: message.text == "📅 Расписание")
 async def schedule(message: Message):
 
@@ -64,13 +162,32 @@ async def schedule(message: Message):
         "📅 РАСПИСАНИЕ\n\n"
         "Здесь будет расписание занятий.\n\n"
         "Пока это демонстрационная версия.\n"
-        "Позже добавим расписание твоей группы."
-    )
-
+        "Позже добавим расписание твоей 
 
 # =========================
 # Университет
 # =========================
+
+@dp.message(lambda message: message.text == "🏫 Университет")
+async def university(message: Message):
+
+    await message.answer(
+        "🏫 КАЗАХСКО-НЕМЕЦКИЙ ИНСТИТУТ "
+        "УСТОЙЧИВОЙ ИНЖЕНЕРИИ (KINI)\n\n"
+        
+        "Казахско-Немецкий институт устойчивой инженерии "
+        "(KINI) — это совместный образовательный проект "
+        "Казахско-немецкого университета (DKU) и "
+        "Каспийского государственного университета технологий "
+        "и инжиниринга имени Ш. Есенова "
+        "(Yessenov University) в Актау.\n\n"
+        
+        "📍 Адрес:\n"
+        "32 микрорайон, 1 здание\n\n"
+        
+        "🌐 Сайт:\n"
+        "kini.kz"
+    )
 
 @dp.message(lambda message: message.text == "🏫 Университет")
 async def university(message: Message):
@@ -94,6 +211,24 @@ async def university(message: Message):
 async def admission(message: Message):
 
     await message.answer(
+        "📝 НЕОБХОДИМЫЕ ДОКУМЕНТЫ\n\n"
+        "1. Қабылдау туралы өтініш\n"
+        "2. Білім туралы құжат\n"
+        "3. ҰБТ тапсырғаны туралы сертификат\n"
+        "4. Білім грантының сертификаты (бар болса)\n"
+        "5. Оқу ақысының 10%-ы төленгені туралы түбіртек "
+        "(коммерциялық негізде)\n"
+        "6. Мед. анықтама 075-У нысаны (флюорограммамен)\n"
+        "7. №63 нысанды екпе картасы\n"
+        "8. 3×4 см көлеміндегі алты фотосурет\n"
+        "9. Жеке куәлік көшірмесі — 2 дана\n"
+        "10. Әскери тіркеу куәлігінің көшірмесі"
+    )
+
+@dp.message(lambda message: message.text == "📝 Поступление")
+async def admission(message: Message):
+
+    await message.answer(
         "📝 ПОСТУПЛЕНИЕ\n\n"
         "Здесь будет информация для абитуриентов:\n\n"
         "📄 Необходимые документы\n"
@@ -107,6 +242,34 @@ async def admission(message: Message):
 # =========================
 # Стипендия
 # =========================
+
+@dp.message(lambda message: message.text == "💰 Стипендия")
+async def scholarship(message: Message):
+
+    await message.answer(
+        "💰 СТИПЕНДИЯ\n\n"
+        "Студенты, обучающиеся на государственном образовательном "
+        "гранте, могут получать государственную стипендию "
+        "при выполнении установленных требований.\n\n"
+        
+        "🎓 Основные условия:\n"
+        "• Обучение на государственном гранте.\n"
+        "• Выполнение учебного плана.\n"
+        "• Отсутствие академической задолженности.\n"
+        "• Соблюдение правил университета.\n\n"
+        
+        "📚 Для получения и сохранения стипендии студенту "
+        "необходимо своевременно сдавать экзамены и другие "
+        "формы контроля.\n\n"
+        
+        "🏆 Также в университете могут действовать различные "
+        "виды поощрений и повышенных стипендий за отличную "
+        "учёбу, научную деятельность и активное участие "
+        "в жизни университета.\n\n"
+        
+        "ℹ️ Актуальные условия, размеры и порядок назначения "
+        "стипендий следует уточнять в университете."
+    )
 
 @dp.message(lambda message: message.text == "💰 Стипендия")
 async def scholarship(message: Message):
